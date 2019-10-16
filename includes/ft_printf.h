@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:37:04 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/15 18:53:10 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:30:56 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ int				ft_printstr(va_list ap);
 void			ft_putnbr(int nb);
 int				ft_printnbr(va_list ap);
 char			*ft_utoa(unsigned int n);
+int				ft_print_unsign(va_list ap);
 
 #endif

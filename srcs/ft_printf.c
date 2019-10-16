@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 14:21:13 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/16 15:39:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static int		ft_tab_of_print(va_list ap, char c)
 		return (ft_printstr(ap));
 	else if (c == 'd' || c == 'i')
 		return (ft_printnbr(ap));
-	//else if (c == 'u')
-	//	return (ft_printunsigned(ap));
+	else if (c == 'u')
+		return (ft_print_unsign(ap));
 	//else if (c == 'o')
 	//	return (ft_printoctal(ap));
 	//else if (c == 'x')
@@ -61,7 +61,7 @@ int				ft_printf(char const *format, ...)
 
 int	main()
 {
-	ft_printf("test : %s\n%c\n%d", "", 'c', -2147483648);
-	ft_printf("test utoa : %s", ft_utoa(2147483648));
+	ft_printf("test : %s\n%c\n%d\n", "", 'c', -2147483648);
+	ft_printf("test utoa : %u", NULL);
 	return (0);
 }

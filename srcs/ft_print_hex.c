@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 17:06:09 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 18:22:39 by lulebugl         ###   ########.fr       */
+/*   Created: 2019/10/16 18:23:51 by lulebugl          #+#    #+#             */
+/*   Updated: 2019/10/16 18:28:46 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_putchar(char c)
+int	ft_print_hex(va_list ap)
 {
-	if (c)
-		write(1, &c, 1);
-	return (1);
+	unsigned int	nbr;
+	char			*str;
+
+	if (!(nbr = va_arg(ap, unsigned int)))
+	{
+		ft_putchar('0');
+		return (0);
+	}
+	if (!(str = ft_hextoa(nbr)))
+		return (0);
+	ft_putstr(str);
+	return (ft_strlen(str));
 }

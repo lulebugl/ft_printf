@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:16:11 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 15:44:44 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:37:27 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ int	ft_print_unsign(va_list ap)
 	if (!(str = ft_utoa(nbr)))
 		return (0);
 	ft_putstr(str);
-	return(ft_strlen(str));
+	return (ft_strlen(str));
 }

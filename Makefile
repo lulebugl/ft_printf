@@ -6,7 +6,7 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/10/16 15:31:50 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/10/16 18:36:24 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,12 @@ SRCS	= ft_strlen.c 			\
 			ft_printnbr.c		\
 			ft_utoa.c			\
 			ft_print_unsign.c	\
+			ft_otoa.c			\
+			ft_print_octal.c	\
+			ft_hextoa.c			\
+			ft_print_hex.c		\
+			ft_hexcaptoa.c		\
+			ft_print_hex_cap.c	\
 			
 SRCSFD = srcs/
 

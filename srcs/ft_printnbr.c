@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 18:21:07 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 14:21:18 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:23:23 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int		ft_printnbr(va_list ap)
 
 	nbr = va_arg(ap, int);
 	ft_putnbr(nbr);
-	return(ft_strlen(ft_itoa(nbr)));
+	return (ft_strlen(ft_itoa(nbr)));
 }

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 15:39:04 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/16 18:34:13 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static int		ft_tab_of_print(va_list ap, char c)
 		return (ft_printnbr(ap));
 	else if (c == 'u')
 		return (ft_print_unsign(ap));
-	//else if (c == 'o')
-	//	return (ft_printoctal(ap));
-	//else if (c == 'x')
-	//	return (ft_printhexa(ap));
-	//else if (c == 'X')
-	//	return (ft_printhexa_cap(ap));
+	else if (c == 'o')
+		return (ft_print_octal(ap));
+	else if (c == 'x')
+		return (ft_print_hex(ap));
+	else if (c == 'X')
+		return (ft_print_hex_cap(ap));
 	//else if (c == 'p')
 	//	return (ft_printvoid(ap));
 	//else if (c == '%')
@@ -61,7 +61,15 @@ int				ft_printf(char const *format, ...)
 
 int	main()
 {
-	ft_printf("test : %s\n%c\n%d\n", "", 'c', -2147483648);
-	ft_printf("test utoa : %u", NULL);
+	ft_printf("my printf :\n%s\n%c\n%d\n\n", "", 'c', -2147483648);
+	printf("printf : %s\n%c\n%d\n\n", "", 'c', -2147483648);
+	ft_printf("my printf printunsign : %u\n\n", "544544214544");
+	printf("printf printunsign : %u\n\n", "544544214544");
+	ft_printf("my printf printoctal : %o\t %o\t %o\n\n", "lop", 785421, "");
+	printf("printf printoctal : %o\t %o\t %o\n\n", "lop", 785421, "");
+	ft_printf("my printf : %x\n\n", 123456789);
+	printf("printf : %x\n\n", 123456789);
+	ft_printf("my printf : %X\n\n", 123456789);
+	printf("printf : %X\n\n", 123456789);
 	return (0);
 }

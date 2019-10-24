@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 18:34:13 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/24 10:00:41 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,42 @@ static int		ft_tab_of_print(va_list ap, char c)
 		return (ft_printnbr(ap));
 	else if (c == 'u')
 		return (ft_print_unsign(ap));
-	else if (c == 'o')
-		return (ft_print_octal(ap));
 	else if (c == 'x')
 		return (ft_print_hex(ap));
 	else if (c == 'X')
 		return (ft_print_hex_cap(ap));
-	//else if (c == 'p')
-	//	return (ft_printvoid(ap));
-	//else if (c == '%')
-	//	return (ft_putchar(c));
+	else if (c == 'p')
+		return (ft_print_void(ap));
+	else if (c == '%')
+		return (ft_putchar(c));
 	return (0);
 }
 
-int				ft_printf(char const *format, ...)
+static int		ft_flags(va_list ap, char c, const char *s, unsigned int i)
+{
+	unsigned int	nbr;
+	unsigned int	len;
+	void			*arg;
+	va_list			at;
+
+	va_copy(at, ap);
+	if (!(arg = va_arg(at, )))
+		return (0);
+	if (s[i] != '\0' && s[i] == '.')
+		i++;
+	nbr = (unsigned int)ft_atoi(s + i);
+	len = nbr;
+	printf("%s\n", arg);
+	while ((nbr - (unsigned int)ft_strlen((const char *)arg) > 0) && c == '0')
+	{
+		write(1, "0", 1);
+		nbr--;
+	}
+	va_end(at);
+	return(ft_strlen(ft_utoa(len)));
+}
+
+int				ft_printf(char const *s, ...)
 {
 	int			i;
 	int			len;
@@ -43,16 +65,23 @@ int				ft_printf(char const *format, ...)
 
 	i = 0;
 	len = 0;
-	va_start(ap, format);
-	while (format[i] != '\0')
+	va_start(ap, s);
+	while (s[i] != '\0')
 	{
-		if (format[i] == '%')
+		if (s[i] == '%')
 		{
-			len += ft_tab_of_print(ap, format[i + 1]);
+			if (s[i + 1] == 48) /*|| s[i + 1] == '-' || s[i + 1] == '.' || s[i + 1] == '*')*/
+			{
+				len += ft_flags(ap, s[i + 1], s, i + 2);
+				if (s[i + 1])
+					while (s && (s[i + 1] != 'c' && s[i + 1] != 's' && s[i + 1] != 'd' && s[i + 1] != 'i'))
+						i++;
+			}
+			len += ft_tab_of_print(ap, s[i + 1]);
 			i++;
 		}
-		else if (format[i] != '%')
-			len += ft_putchar(format[i]);
+		else if (s[i] != '%')
+			len += ft_putchar(s[i]);
 		i++;
 	}
 	va_end(ap);
@@ -61,15 +90,15 @@ int				ft_printf(char const *format, ...)
 
 int	main()
 {
-	ft_printf("my printf :\n%s\n%c\n%d\n\n", "", 'c', -2147483648);
-	printf("printf : %s\n%c\n%d\n\n", "", 'c', -2147483648);
-	ft_printf("my printf printunsign : %u\n\n", "544544214544");
-	printf("printf printunsign : %u\n\n", "544544214544");
-	ft_printf("my printf printoctal : %o\t %o\t %o\n\n", "lop", 785421, "");
-	printf("printf printoctal : %o\t %o\t %o\n\n", "lop", 785421, "");
-	ft_printf("my printf : %x\n\n", 123456789);
-	printf("printf : %x\n\n", 123456789);
-	ft_printf("my printf : %X\n\n", 123456789);
-	printf("printf : %X\n\n", 123456789);
+	//ft_printf("my printf :\n%s\n%c\n%d\n\n", "", 'c', -2147483648);
+	//printf("printf : %s\n%c\n%d\n\n", "", 'c', -2147483648);
+	//ft_printf("my printf printunsign : %u\n\n", "544544214544");
+	//printf("printf printunsign : %u\n\n", "544544214544");
+	ft_printf("my printf : %0.12d\n\n", 123456789);
+	printf("printf : %0.12d\n\n", 123456789);
+	//ft_printf("my printf : %X\n\n", 123456789);
+	//printf("printf : %X\n\n", 123456789);
+	//ft_printf("my printf : %*p\n\n", 125, (void*)123456789);
+	//printf("printf : %*p\n\n", 125, (void*)123456789);
 	return (0);
 }

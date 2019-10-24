@@ -6,15 +6,15 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:16:11 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 18:37:27 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/24 10:46:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-
-// 	checker le cas ou u ----> NULL	 //
-
+/*
+** 	checker le cas ou u ----> NULL
+*/
 
 int	ft_print_unsign(va_list ap)
 {

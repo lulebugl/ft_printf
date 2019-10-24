@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/24 10:00:41 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/24 10:56:34 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,28 @@ static int		ft_flags(va_list ap, char c, const char *s, unsigned int i)
 {
 	unsigned int	nbr;
 	unsigned int	len;
+	unsigned int	pos;
 	void			*arg;
 	va_list			at;
 
 	va_copy(at, ap);
-	if (!(arg = va_arg(at, )))
+	if (!(arg = va_arg(at, void*)))
 		return (0);
 	if (s[i] != '\0' && s[i] == '.')
 		i++;
 	nbr = (unsigned int)ft_atoi(s + i);
 	len = nbr;
-	printf("%s\n", arg);
-	while ((nbr - (unsigned int)ft_strlen((const char *)arg) > 0) && c == '0')
+	pos = ft_strlen(ft_utoa((unsigned int)arg));
+	if (c == '0' || (c == '-' && s[i - 1] == '.'))
 	{
-		write(1, "0", 1);
-		nbr--;
+		while ((nbr - pos) > 0)
+		{
+			write(1, "0", 1);
+			nbr--;
+		}
 	}
 	va_end(at);
-	return(ft_strlen(ft_utoa(len)));
+	return (ft_strlen(ft_utoa(len)));
 }
 
 int				ft_printf(char const *s, ...)
@@ -70,11 +74,11 @@ int				ft_printf(char const *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			if (s[i + 1] == 48) /*|| s[i + 1] == '-' || s[i + 1] == '.' || s[i + 1] == '*')*/
+			if (s[i + 1] == '0' || s[i + 1] == '-')
 			{
 				len += ft_flags(ap, s[i + 1], s, i + 2);
 				if (s[i + 1])
-					while (s && (s[i + 1] != 'c' && s[i + 1] != 's' && s[i + 1] != 'd' && s[i + 1] != 'i'))
+					while (s && (s[i + 1] != 'd' && s[i + 1] != 'i'))
 						i++;
 			}
 			len += ft_tab_of_print(ap, s[i + 1]);
@@ -88,17 +92,19 @@ int				ft_printf(char const *s, ...)
 	return (len);
 }
 
-int	main()
-{
-	//ft_printf("my printf :\n%s\n%c\n%d\n\n", "", 'c', -2147483648);
-	//printf("printf : %s\n%c\n%d\n\n", "", 'c', -2147483648);
-	//ft_printf("my printf printunsign : %u\n\n", "544544214544");
-	//printf("printf printunsign : %u\n\n", "544544214544");
-	ft_printf("my printf : %0.12d\n\n", 123456789);
-	printf("printf : %0.12d\n\n", 123456789);
-	//ft_printf("my printf : %X\n\n", 123456789);
-	//printf("printf : %X\n\n", 123456789);
-	//ft_printf("my printf : %*p\n\n", 125, (void*)123456789);
-	//printf("printf : %*p\n\n", 125, (void*)123456789);
-	return (0);
-}
+/*
+**	int	main()
+**	{
+**		//ft_printf("my printf :\n%s\n%c\n%d\n\n", "", 'c', -2147483648);
+**		//printf("printf : %s\n%c\n%d\n\n", "", 'c', -2147483648);
+**		//ft_printf("my printf printunsign : %u\n\n", "544544214544");
+**		//printf("printf printunsign : %u\n\n", "544544214544");
+**		ft_printf("my printf : %-.123d\n\n, %0.123d\n\n", 1234567, 666);
+**		printf("yr printf : %-.123d\n\n, %0.123d\n\n", 1234567, 666);
+**		//ft_printf("my printf : %X\n\n", 123456789);
+**		//printf("printf : %X\n\n", 123456789);
+**		//ft_printf("my printf : %*p\n\n", 125, (void*)123456789);
+**		//printf("printf : %*p\n\n", 125, (void*)123456789);
+**		return (0);
+**	}
+*/

@@ -6,7 +6,7 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/10/24 10:59:46 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/10/24 11:17:38 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,7 @@ CC		= gcc
 
 CFLAGS	= -Wall -Wextra -Werror
 
-##$(NAME): $(OBJSFD) $(OBJS)
-##	$(CC) $(CFLAGS) $(OBJS) -o $@
-##	ar rcs $(NAME) $(OBJS)
-
-$(NAME) :	$(OBJSFD) $(OBJS)
-	$(CC) $(CFLAGS) -c $(SRCS) -I libft.h
+$(NAME): $(OBJSFD) $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 $(OBJSFD) :
@@ -58,7 +53,7 @@ $(OBJSFD)%.o: $(SRCSFD)%.c
 
 all : $(NAME)
 
-clean :
+clean :	
 	rm -rf $(OBJSFD)
 	
 fclean : clean

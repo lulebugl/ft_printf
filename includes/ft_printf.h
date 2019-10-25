@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:37:04 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 00:41:58 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 01:15:17 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@
 
 typedef struct		s_struct
 {
-	unsigned int	len;
+	int				i;
 	int				minus;
 	int				zero;
+	int				space;
 	int 			width;
 	int 			precision;
-}					t_struct;	
+	int				precised;
+}					t_struct;
 
 int					ft_printf(char const *s, ...);
 int					ft_atoi(const char *str);
@@ -44,5 +46,6 @@ int					ft_print_hex(va_list ap);
 char				*ft_hexcaptoa(unsigned int n);
 int					ft_print_hex_cap(va_list ap);
 int					ft_print_void(va_list ap);
+void				ft_printing(const char *s, va_list ap, t_struct *flag);
 
 #endif

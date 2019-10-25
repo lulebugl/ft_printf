@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 00:48:38 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 01:05:00 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 01:35:57 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void		ft_print(const char *s, t_struct *flag, va_list ap)
 	else if (s[flag.i] == 'c')
 		ft_print_char(s[flag.i], flag, ap);
 	else if (s[flag.i] == 's')
-		ft_print_str(s[flag.i], flag, ap);
+		ft_print_str(flag, ap);
 	else if (s[flag.i] == '%')
 		ft_print_percent_sign(s[flag.i], flag);
 }

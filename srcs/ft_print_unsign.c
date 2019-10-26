@@ -6,28 +6,89 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:16:11 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/24 10:46:31 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:05:57 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-/*
-** 	checker le cas ou u ----> NULL
-*/
-
-int	ft_print_unsign(va_list ap)
+static void	ft_print_decimal_at_left(int nbr, t_struct *flag)
 {
-	unsigned int	nbr;
-	char			*str;
+	int nbrlen;
 
-	if (!(nbr = va_arg(ap, unsigned int)))
+	nbrlen = ft_strlen(ft_itoa(nbr));
+	if (nbr == 0 && flag.precised && !flag.precision)
 	{
-		ft_putchar('0');
-		return (0);
+		while (flag.width)
+		{
+			flag.pos += write(1, " ", 1);
+			flag.width--;
+		}
+		return ;
 	}
-	if (!(str = ft_utoa(nbr)))
-		return (0);
-	ft_putstr(str);
-	return (ft_strlen(str));
+	while (nbrlen++ < flag.precision)
+		flag.pos += write(1, "0", 1);
+	ft_putnbr(nbr);
+	flag.pos += ft_strlen(ft_itoa(nbr));
+	while (flag.width >= nbrlen)
+	{
+		flag.pos += write(1, " ", 1);
+		flag.width--;
+	}
+}
+
+static void	ft_padding(int nbrlen, t_struct *flag)
+{
+	if (!flag.precised)
+		while (flag.width-- > nbrlen)
+		{
+			if (flag.zero)
+				flag.pos += write(1, "0", 1);
+			else
+				flag.pos += write(1, " ", 1);
+		}
+	else
+	{
+		while (flag.width-- > flag.precision)
+		{
+			if ((flag.zero && flag.width != flag.precision))
+				flag.pos += write(1, "0", 1);
+			else
+				flag.pos += write(1, " ", 1);
+		}
+	}
+}
+
+static void	ft_print_decimal_at_right(int nbr, t_struct *flag)
+{
+	int nbrlen;
+
+	nbrlen = ft_strlen(ft_itoa(nbr));
+	if (nbr == 0 && flag.precised && !flag.precision)
+	{
+		while (flag.width)
+		{
+			flag.pos += write(1, " ", 1);
+			flag.width--;
+		}
+		return ;
+	}
+	ft_padding(nbrlen, flag);
+	flag.precision = (flag.width > flag.precision) ? flag.width : flag.precision;
+	while (nbrlen++ < flag.precision)
+		flag.pos += write(1, "0", 1);
+	ft_putnbr(nbr);
+	flag.pos += ft_strlen(ft_itoa(nbr));
+}
+
+void		ft_print_decimal(t_struct *flag, va_list ap)
+{
+	int nbr;
+
+	nbr = va_arg(ap, int);
+	if (flag.minus)
+		ft_print_decimal_at_left(nbr, flag);
+	else
+		ft_print_decimal_at_right(nbr, flag);
+	}
 }

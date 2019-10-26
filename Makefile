@@ -6,7 +6,7 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/10/24 11:17:38 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/10/26 02:48:48 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,12 @@ INC = includes/ft_printf.h
 SRCS	= ft_strlen.c 			\
 			ft_atoi.c			\
 			ft_itoa.c			\
-			ft_printchar.c		\
+			ft_print_char.c		\
 			ft_putchar.c		\
 			ft_printf.c			\
+			ft_strchr.c			\
 			ft_putstr.c			\
-			ft_printstr.c		\
+			ft_print_str.c		\
 			ft_putnbr.c			\
 			ft_printnbr.c		\
 			ft_utoa.c			\
@@ -29,8 +30,7 @@ SRCS	= ft_strlen.c 			\
 			ft_hextoa.c			\
 			ft_print_hex.c		\
 			ft_hexcaptoa.c		\
-			ft_print_hexcap.c	\
-			ft_print_void.c		\
+			ft_print_pointer.c	\
 			
 SRCSFD = srcs/
 

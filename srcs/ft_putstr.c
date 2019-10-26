@@ -6,17 +6,22 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 02:59:42 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 14:21:36 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 02:25:29 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putstr(char const *str)
+void	ft_putstr(char *s)
 {
-	int	i;
+	size_t i;
 
-	i = -1;
-	while (str && str[++i] != 0)
-		write(1, str + i, 1);
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] != '\0')
+	{
+		write(1, s[i], 1);
+		i++;
+	}
 }

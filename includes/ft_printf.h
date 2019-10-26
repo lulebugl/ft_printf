@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:37:04 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 01:55:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 02:06:30 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int					ft_printnbr(va_list ap);
 char				*ft_utoa(unsigned int n);
 int					ft_print_unsign(va_list ap);
 char				*ft_hextoa(unsigned int n);
-int					ft_print_hex(va_list ap);
+void				ft_print_hex(char c, t_struct *flag, va_list ap);
 char				*ft_hexcaptoa(unsigned int n);
 int					ft_print_hex_cap(va_list ap);
 int					ft_print_pointer(va_list ap);

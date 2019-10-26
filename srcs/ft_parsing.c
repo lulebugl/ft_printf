@@ -6,25 +6,25 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 01:04:21 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 01:30:29 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 03:57:40 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_precision(const char *format, t_struct *f, va_list ap)
+static void	ft_precision(const char *s, t_struct *flag, va_list ap)
 {
 	int precision;
 
 	if (s[flag.i] == '.')
 	{
-		f.i++;
+		flag.i++;
 		flag.precised = 1;
 		if (ft_isdigit(s[flag.i]))
 		{
 			flag.precision = ft_atoi(&s[flag.i]);
 			while (ft_isdigit(s[flag.i]))
-				f.i++;
+				flag.i++;
 		}
 		else if (s[flag.i] == '*')
 		{

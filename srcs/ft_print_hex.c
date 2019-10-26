@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:23:51 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:57:28 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:00:02 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void	ft_padding(int nbrlen, t_struct *flag)
 			if (flag->zero)
 				flag->pos += write(1, "0", 1);
 			else
-				flag->len += write(1, " ", 1);
+				flag->pos+= write(1, " ", 1);
 		}
 	}
 }

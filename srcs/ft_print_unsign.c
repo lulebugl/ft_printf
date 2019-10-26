@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:16:11 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:57:28 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:14:22 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,4 @@ void		ft_print_unsign(t_struct *flag, va_list ap)
 		ft_print_unsign_at_left(nbr, flag);
 	else
 		ft_print_unsign_at_right(nbr, flag);
-	}
 }

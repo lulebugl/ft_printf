@@ -6,18 +6,18 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:57:40 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:04:12 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static t_struc	*init_struct(t_struct *flag)
+static t_struct	*init_struct(t_struct *flag)
 {
-	if (!(flag = (struct*)malloc(sizeof(t_struct))))
+	if (!(flag = (t_struct*)malloc(sizeof(t_struct))))
 		return(NULL);
 	flag->i = 0;
-	flag->len = 0;
+	flag->pos= 0;
 	return (flag);
 }
 

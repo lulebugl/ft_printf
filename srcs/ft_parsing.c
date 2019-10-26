@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 01:04:21 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:57:28 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:07:47 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	ft_flags(const char *s, t_struct *flag)
 	}
 }
 
-void		ft_parsing(const char *s, va_list ap, t_struct *flag)
+void		ft_parsing(const char *s, t_struct *flag, va_list ap)
 {
 	ft_flags(s, flag);
 	ft_width(s, flag, ap);

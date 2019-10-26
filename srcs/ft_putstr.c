@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/08 02:59:42 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 02:25:29 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:13:00 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_putstr(char *s)
 		return ;
 	while (s[i] != '\0')
 	{
-		write(1, s[i], 1);
+		write(1, &s[i], 1);
 		i++;
 	}
 }

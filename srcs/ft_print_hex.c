@@ -6,13 +6,13 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:23:51 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 03:57:04 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:45:02 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_print_and_left_align(unsigned int nbr, t_struct *flag, char c)
+static void	ft_print_hex_at_left(unsigned int nbr, t_struct *flag, char c)
 {
 	int nbrlen;
 
@@ -61,7 +61,7 @@ static void	ft_padding(int nbrlen, t_struct *flag)
 	}
 }
 
-static void	ft_print_and_right_align(unsigned int nbr, t_struct *flag, char c)
+static void	ft_print_hex_at_right(unsigned int nbr, t_struct *flag, char c)
 {
 	int nbrlen;
 
@@ -90,8 +90,8 @@ void		ft_print_hex(char c, t_struct *flag, va_list ap)
 	{
 		nbr = va_arg(ap, unsigned int);
 		if (flag.minus)
-			ft_print_and_left_align(nbr, flag, c);
+			ft_print_hex_at_left(nbr, flag, c);
 		else
-			ft_print_hex_right_align(nbr, flag, c);
+			ft_print_hex_at_right(nbr, flag, c);
 	}
 }

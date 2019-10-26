@@ -6,13 +6,13 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 18:21:07 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:03:37 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:52:22 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_print_decimal_at_left(int nbr, t_struct *flag)
+static void	ft_print_nbr_at_left(int nbr, t_struct *flag)
 {
 	int nbrlen;
 
@@ -59,7 +59,7 @@ static void	ft_padding(int nbrlen, t_struct *flag)
 	}
 }
 
-static void	ft_print_decimal_at_right(int nbr, t_struct *flag)
+static void	ft_print_nbr_at_right(int nbr, t_struct *flag)
 {
 	int nbrlen;
 
@@ -81,14 +81,14 @@ static void	ft_print_decimal_at_right(int nbr, t_struct *flag)
 	flag.pos += ft_strlen(ft_itoa(nbr));
 }
 
-void		ft_print_decimal(t_struct *flag, va_list ap)
+void		ft_print_nbr(t_struct *flag, va_list ap)
 {
 	int nbr;
 
 	nbr = va_arg(ap, int);
 	if (flag.minus)
-		ft_print_decimal_at_left(nbr, flag);
+		ft_print_nbr_at_left(nbr, flag);
 	else
-		ft_print_decimal_at_right(nbr, flag);
+		ft_print_nbr_at_right(nbr, flag);
 	}
 }

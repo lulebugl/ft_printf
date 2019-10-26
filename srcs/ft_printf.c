@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 00:47:34 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:57:40 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_struc	*init_struct(t_struct *flag)
 {
 	if (!(flag = (struct*)malloc(sizeof(t_struct))))
 		return(NULL);
-	flag.i = 0;
-	flag.len = 0;
+	flag->i = 0;
+	flag->len = 0;
 	return (flag);
 }
 
@@ -41,13 +41,4 @@ int				ft_printf(char const *s, ...)
 	va_end(ap);
 	free(flag);
 	return (len);
-}
-
-int main()
-{
-	t_struct flag;
-
-
-	printf("%d", flag.len)
-	return (0);
 }

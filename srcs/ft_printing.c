@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/26 00:48:38 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:33:59 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:57:28 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void		ft_print(const char *s, t_struct *flag, va_list ap)
 {
-	//if (s[flag.i] == 'd' || s[flag.i] == 'i')
+	//if (s[flag->i] == 'd' || s[flag->i] == 'i')
 	//	ft_print_nbr(flag, ap);
-	//else if (s[flag.i] == 'u')
-	//	ft_print_unsign(s[flag.i], flag, ap);
-	//else if (s[flag.i] == 'x' || s[flag.i] == 'X')
-	//	ft_print_hex(s[flag.i], flag, ap);
-	else if (s[flag.i] == 'p')
-		ft_print_pointer(s[flag.i], flag, ap);
-	//else if (s[flag.i] == 'c')
-	//	ft_print_char(s[flag.i], flag, ap);
-	//else if (s[flag.i] == 's')
+	//else if (s[flag->i] == 'u')
+	//	ft_print_unsign(s[flag->i], flag, ap);
+	//else if (s[flag->i] == 'x' || s[flag->i] == 'X')
+	//	ft_print_hex(s[flag->i], flag, ap);
+	else if (s[flag->i] == 'p')
+		ft_print_pointer(s[flag->i], flag, ap);
+	//else if (s[flag->i] == 'c')
+	//	ft_print_char(s[flag->i], flag, ap);
+	//else if (s[flag->i] == 's')
 	//	ft_print_str(flag, ap);
-	//else if (s[flag.i] == '%')
+	//else if (s[flag->i] == '%')
 	//	ft_print_percent_sign(flag);
 }
 
@@ -41,14 +41,14 @@ static void		ft_reset_struct(t_struct *f)
 
 void			ft_printing(const char *s, va_list ap, t_struct *flag)
 {
-	while (s[flag.i] != '\0')
+	while (s[flag->i] != '\0')
 	{
-		if (s[flag.i] == '%')
+		if (s[flag->i] == '%')
 		{
-			flag.i++;
-			if (ft_strchr("-.*0123456789", s[flag.i]))
+			flag->i++;
+			if (ft_strchr("-.*0123456789", s[flag->i]))
 				ft_parsing(s, flag, ap);
-			if (ft_strchr("cspdiuxX%", s[flag.i]))
+			if (ft_strchr("cspdiuxX%", s[flag->i]))
 			{
 				ft_print(s, flag, ap);
 				if (f.len == -1)
@@ -57,7 +57,7 @@ void			ft_printing(const char *s, va_list ap, t_struct *flag)
 			}
 		}
 		else
-			f.pos += write(1, &s[flag.i], 1);
-		flag.i++;
+			f.pos += write(1, &s[flag->i], 1);
+		flag->i++;
 	}
 }

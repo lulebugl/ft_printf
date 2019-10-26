@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:37:04 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:55:10 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:58:39 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int					ft_printf(char const *s, ...);
 int					ft_atoi(const char *str);
 char				*ft_itoa(int n);
 size_t				ft_strlen(const char *str);
+int					ft_isdigit(int c);
+char				*ft_strchr(const char *s, int c);
 void				ft_putstr(char const *str);
 void				ft_print_char(t_struct *flag, va_list ap);
 void				ft_print_str(t_struct *flag, va_list ap);

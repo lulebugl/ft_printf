@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 16:37:04 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 02:06:30 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:30:09 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ int					ft_print_hex_cap(va_list ap);
 int					ft_print_pointer(va_list ap);
 void				ft_printing(const char *s, va_list ap, t_struct *flag);
 void				ft_parsing(const char *s, va_list ap, t_struct *flag);
+void				ft_print_percent(t_struct *flag);
 
 #endif

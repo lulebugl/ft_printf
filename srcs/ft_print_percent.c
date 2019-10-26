@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_char.c                                    :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/15 16:45:50 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:33:26 by lulebugl         ###   ########.fr       */
+/*   Created: 2019/10/26 04:23:33 by lulebugl          #+#    #+#             */
+/*   Updated: 2019/10/26 04:31:15 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_print_char_at_left(unsigned char c, t_struct *flag)
+static void	ft_print_percent_at_left(t_struct *flag)
 {
-	flag.len += write(1, c, 1);
+	flag.len += write(1, "%", 1);
 	while (flag.width > 1)
 	{
 		flag.len += write(1, " ", 1);
@@ -22,7 +22,7 @@ static void	ft_print_char_at_left(unsigned char c, t_struct *flag)
 	}
 }
 
-static void	ft_print_char_at_right(unsigned char c, t_struct *flag)
+static void	ft_print_percent_at_right(t_struct *flag)
 {
 	while (flag.width > 1)
 	{
@@ -32,16 +32,13 @@ static void	ft_print_char_at_right(unsigned char c, t_struct *flag)
 			flag.len += write(1, " ", 1);
 		flag.width--;
 	}
-	flag.len += write(1, c, 1);
+	flag.len += write(1, "%", 1);
 }
 
-void		ft_print_char(t_struct *flag, va_list ap)
+void		ft_print_percent(t_struct *flag)
 {
-	unsigned char	c;
-
-	c = va_arg(ap, int);
 	if (flag.minus)
-		ft_print_char_at_left(c, flag);
+		ft_print_percent_at_left(flag);
 	else
-		ft_print_char_at_right(c, flag);
+		ft_print_percent_at_right(flag);
 }

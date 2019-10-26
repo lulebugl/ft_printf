@@ -6,17 +6,17 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 15:16:11 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 04:05:57 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:11:50 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_print_decimal_at_left(int nbr, t_struct *flag)
+static void	ft_print_unsign_at_left(unsigned int nbr, t_struct *flag)
 {
 	int nbrlen;
 
-	nbrlen = ft_strlen(ft_itoa(nbr));
+	nbrlen = ft_strlen(ft_utoa(nbr));
 	if (nbr == 0 && flag.precised && !flag.precision)
 	{
 		while (flag.width)
@@ -28,8 +28,8 @@ static void	ft_print_decimal_at_left(int nbr, t_struct *flag)
 	}
 	while (nbrlen++ < flag.precision)
 		flag.pos += write(1, "0", 1);
-	ft_putnbr(nbr);
-	flag.pos += ft_strlen(ft_itoa(nbr));
+	ft_putstr(ft_utoa(nbr));
+	flag.pos += ft_strlen(ft_utoa(nbr));
 	while (flag.width >= nbrlen)
 	{
 		flag.pos += write(1, " ", 1);
@@ -59,11 +59,11 @@ static void	ft_padding(int nbrlen, t_struct *flag)
 	}
 }
 
-static void	ft_print_decimal_at_right(int nbr, t_struct *flag)
+static void	ft_print_unsign_at_right(unsigned int nbr, t_struct *flag)
 {
 	int nbrlen;
 
-	nbrlen = ft_strlen(ft_itoa(nbr));
+	nbrlen = ft_strlen(ft_utoa(nbr));
 	if (nbr == 0 && flag.precised && !flag.precision)
 	{
 		while (flag.width)
@@ -77,18 +77,18 @@ static void	ft_print_decimal_at_right(int nbr, t_struct *flag)
 	flag.precision = (flag.width > flag.precision) ? flag.width : flag.precision;
 	while (nbrlen++ < flag.precision)
 		flag.pos += write(1, "0", 1);
-	ft_putnbr(nbr);
-	flag.pos += ft_strlen(ft_itoa(nbr));
+	ft_putstr(ft_utoa(nbr));
+	flag.pos += ft_strlen(ft_utoa(nbr));
 }
 
-void		ft_print_decimal(t_struct *flag, va_list ap)
+void		ft_print_unsign(t_struct *flag, va_list ap)
 {
-	int nbr;
+	unsigned int nbr;
 
 	nbr = va_arg(ap, int);
 	if (flag.minus)
-		ft_print_decimal_at_left(nbr, flag);
+		ft_print_unsign_at_left(nbr, flag);
 	else
-		ft_print_decimal_at_right(nbr, flag);
+		ft_print_unsign_at_right(nbr, flag);
 	}
 }

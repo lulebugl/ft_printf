@@ -6,13 +6,13 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 17:08:53 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 01:55:20 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 04:17:00 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void	ft_print_space_right(char *str, t_struct *flag)
+static void	ft_print_str_at_left(char *str, t_struct *flag)
 {
 	int len;
 
@@ -29,7 +29,7 @@ static void	ft_print_space_right(char *str, t_struct *flag)
 	}
 }
 
-static void	ft_print_and_align(char *str, t_struct *flag)
+static void	ft_print_str_at_right(char *str, t_struct *flag)
 {
 	int len;
 
@@ -55,7 +55,7 @@ void		ft_print_str(t_struct *flag, va_list ap)
 
 	str = va_arg(ap, char *);
 	if (flag.minus)
-		ft_print_space_left(str, flag);
+		ft_print_str_at_left(str, flag);
 	else
-		ft_print_and_align(str, flag);
+		ft_print_str_at_right(str, flag);
 }

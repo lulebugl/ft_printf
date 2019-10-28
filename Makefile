@@ -6,7 +6,7 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/10/26 04:53:37 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/10/26 05:20:37 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ INC = includes/ft_printf.h
 SRCS	= ft_strlen.c 			\
 			ft_atoi.c			\
 			ft_isdigit.c		\
+			ft_putchar.c		\
 			ft_itoa.c			\
 			ft_parsing.c		\
 			ft_print_char.c		\

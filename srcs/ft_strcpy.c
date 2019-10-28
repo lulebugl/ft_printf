@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 03:05:00 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 05:19:25 by lulebugl         ###   ########.fr       */
+/*   Created: 2019/10/28 07:58:13 by lulebugl          #+#    #+#             */
+/*   Updated: 2019/10/28 07:58:17 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr(int nb)
+char	*ft_strcpy(char *dst, const char *src)
 {
-	long	i;
+	size_t i;
 
-	i = nb;
-	if (i < 0)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		ft_putchar('-');
-		i = i * (-1);
+		dst[i] = src[i];
+		i++;
 	}
-	if (i > 9)
-	{
-		ft_putnbr(i / 10);
-		ft_putnbr(i % 10);
-	}
-	else
-		ft_putchar(i + '0');
+	dst[i] = '\0';
+	return (dst);
 }

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 18:23:51 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 05:00:02 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/28 08:51:25 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ft_print_hex_at_left(unsigned int nbr, t_struct *flag, char c)
 {
 	int nbrlen;
 
-	nbrlen = ft_strlen(ft_hextoa(nbr));
+	nbrlen = ft_strlen(ft_itoa_base(nbr, 16, c));
 	if (nbr == 0 && flag->precised && !flag->precision)
 	{
 		while (flag->width)
@@ -28,8 +28,7 @@ static void	ft_print_hex_at_left(unsigned int nbr, t_struct *flag, char c)
 	}
 	while (nbrlen++ < flag->precision)
 		flag->pos += write(1, "0", 1);
-	(c == 'x') ? ft_putstr(ft_hextoa(nbr)) : ft_putstr(ft_hexcaptoa(nbr));
-	flag->pos += ft_strlen(ft_hextoa(nbr));
+	flag->pos += ft_itoa_base_and_print(nbr, 16, c);
 	while (flag->width >= nbrlen)
 	{
 		flag->pos += write(1, " ", 1);
@@ -65,7 +64,8 @@ static void	ft_print_hex_at_right(unsigned int nbr, t_struct *flag, char c)
 {
 	int nbrlen;
 
-	nbrlen = ft_strlen(ft_hextoa(nbr));
+	nbrlen = ft_strlen(ft_itoa_base(nbr, 16, c));
+	printf("nbrlen : %d\n", nbrlen);
 	if (nbr == 0 && flag->precised && !flag->precision)
 	{
 		while (flag->width)
@@ -78,8 +78,7 @@ static void	ft_print_hex_at_right(unsigned int nbr, t_struct *flag, char c)
 	ft_padding(nbrlen, flag);
 	while (nbrlen++ < flag->precision)
 		flag->pos += write(1, "0", 1);
-	(c == 'x') ? ft_putstr(ft_hextoa(nbr)) : ft_putstr(ft_hexcaptoa(nbr));
-	flag->pos += ft_strlen(ft_hextoa(nbr));
+	flag->pos += ft_itoa_base_and_print(nbr, 16, c);
 }
 
 void		ft_print_hex(char c, t_struct *flag, va_list ap)

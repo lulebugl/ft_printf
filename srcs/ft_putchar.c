@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 03:05:00 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 05:19:25 by lulebugl         ###   ########.fr       */
+/*   Created: 2019/10/15 17:06:09 by lulebugl          #+#    #+#             */
+/*   Updated: 2019/10/16 18:22:39 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void	ft_putnbr(int nb)
+int		ft_putchar(char c)
 {
-	long	i;
-
-	i = nb;
-	if (i < 0)
-	{
-		ft_putchar('-');
-		i = i * (-1);
-	}
-	if (i > 9)
-	{
-		ft_putnbr(i / 10);
-		ft_putnbr(i % 10);
-	}
-	else
-		ft_putchar(i + '0');
+	if (c)
+		write(1, &c, 1);
+	return (1);
 }

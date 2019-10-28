@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 08:15:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/26 05:04:12 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/10/26 05:32:27 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int				ft_printf(char const *s, ...)
 	{
 		ft_printing(s, ap, flag);
 	}
+	len = flag->pos;
 	va_end(ap);
 	free(flag);
 	return (len);

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 12:47:32 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void				handle_unsigned_int_dec(t_info *info)
 	nbr_len = 0;
 	while (tmp && ++nbr_len)
 		tmp /= info->base;
-	nbr_len += (nbr == 0 && !(pf & PRECI_OB_FLAG && info->precision == 0)) ? 1 : 0;
+	nbr_len += (nbr == 0 && !(pf & PRECISION_FLAG && info->precision == 0)) ? 1 : 0;
 	nbr_len += (pf & APOST_FLAG) ? ((nbr_len - 1) / 3) : 0;
-	if (pf & PRECI_OB_FLAG)
+	if (pf & PRECISION_FLAG)
 		pf ^= ZERO_FLAG;
 	handle_int_prepad(p, nbr_len, 0);
 	pf_itoa_base(p, (uintmax_t)ABS(nbr), nbr_len);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, MAX(info->precision, nbr_len));
 }
 
@@ -86,16 +86,16 @@ void				handle_unsigned_int_oct(t_info *info)
 	nbr_len = 0;
 	while (tmp && ++nbr_len)
 		tmp /= info->base;
-	nbr_len += (nbr == 0 && !(pf & PRECI_OB_FLAG && info->precision == 0)) ? 1 : 0;
-	if (pf & PRECI_OB_FLAG)
+	nbr_len += (nbr == 0 && !(pf & PRECISION_FLAG && info->precision == 0)) ? 1 : 0;
+	if (pf & PRECISION_FLAG)
 		pf ^= ZERO_FLAG;
 	if (pf & HASH_FLAG && nbr != 0)
 		info->width--;
 	handle_int_prepad(p, nbr_len, 0);
-	if ((pf & HASH_FLAG && nbr != 0) || (pf & HASH_FLAG && pf & PRECI_OB_FLAG))
+	if ((pf & HASH_FLAG && nbr != 0) || (pf & HASH_FLAG && pf & PRECISION_FLAG))
 		buff(p, "0", 1);
 	pf_itoa_base(p, (uintmax_t)ABS(nbr), nbr_len);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, MAX(info->precision, nbr_len));
 }
 
@@ -116,13 +116,13 @@ void				handle_unsigned_int_hex(t_info *info)
 	nbr_len = 0;
 	while (tmp && ++nbr_len)
 		tmp /= info->base;
-	nbr_len += (nbr == 0 && !(pf & PRECI_OB_FLAG && info->precision == 0)) ? 1 : 0;
-	if (pf & PRECI_OB_FLAG)
+	nbr_len += (nbr == 0 && !(pf & PRECISION_FLAG && info->precision == 0)) ? 1 : 0;
+	if (pf & PRECISION_FLAG)
 		pf ^= ZERO_FLAG;
 	if (pf & HASH_FLAG && (nbr != 0 || info->specifier == 'p'))
 		info->width -= 2;
 	handle_int_prepad(p, nbr_len, 0);
 	pf_itoa_base(p, (uintmax_t)ABS(nbr), nbr_len);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, MAX(info->precision, nbr_len));
 }

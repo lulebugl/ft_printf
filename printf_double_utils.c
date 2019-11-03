@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 18:30:27 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,21 +156,21 @@ void			handle_double_prepad(t_info *info, int nbr_len)
 	int		zp_len;
 	int		wp_len;
 
-	wp_len = (info->flags & PRECI_OB_FLAG) ? MAX(info->precision, nbr_len) : nbr_len;
+	wp_len = (info->flags & PRECISION_FLAG) ? MAX(info->precision, nbr_len) : nbr_len;
 	zp_len = (info->precision > nbr_len) ? info->precision - nbr_len : 0;
-	if (info->flags & WIDTH_OB_FLAG && !(info->flags & DASH_FLAG))
+	if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 	{
 		if (info->flags & ZERO_FLAG)
 			wp_len = info->width - wp_len;
-		if (info->flags & PRECI_OB_FLAG)
+		if (info->flags & PRECISION_FLAG)
 			pad_width(p, zp_len + nbr_len);
 		else if (!(info->flags & ZERO_FLAG))
 			pad_width(p, wp_len);
 	}
 	handle_double_prepend(p);
-	if (info->flags & PRECI_OB_FLAG)
+	if (info->flags & PRECISION_FLAG)
 		pad(p, zp_len, '0');
-	else if (info->flags & WIDTH_OB_FLAG && !(info->flags & DASH_FLAG))
+	else if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 		if (info->flags & ZERO_FLAG)
 			pad(p, wp_len, '0');
 }

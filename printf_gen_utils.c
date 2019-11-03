@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:56:29 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/03 15:35:34 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:56:26 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,11 @@
 #include <libft.h>
 #include <ft_printf.h>
 
-void	flush_buffer(t_info *info)
+void	print_buffer(t_info *info)
 {
 	write(info->fd, info->buf, info->buf_len);
 	info->buf_len = 0;
 }
-
-/*
-**	buff()
-**	We will buffer our printf to avoid the overhead of multiple 'write(2)' calls
-**	Written to closely mirror the arguments of 'write(2)' so we can just do a
-**	simple replace.
-**
-**	1) cast our void *s as an unsigned char
-**	2) While our current buf_len and the n we'd like to write are bigger
-**	   than our BUFF_SIZE
-**	   a) We calculate the remaining space in our buffer
-**	   b) We fill the buffer to the brim (and decrement n for each fill)
-**	   c) We flush the buffer
-**  3) Buffer any left over n now that we know that 'info->buf_len + n'
-**	   will fit in our buffer.
-*/
 
 void	buff(t_info *info, const void *s, size_t n)
 {
@@ -51,7 +35,7 @@ void	buff(t_info *info, const void *s, size_t n)
 			info->buf[info->buf_len++] = *str++;
 			info->len++;
 		}
-		flush_buffer(info);
+		print_buffer(info);
 	}
 	while (n--)
 	{

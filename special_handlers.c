@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:52:46 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:22:58 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void			handle_escape(t_info *info)
 	int		pf;
 
 	pf = info->flags;
-	if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 		pad_width(p, 1);
 	buff(p, "%", 1);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, 1);
 }
 

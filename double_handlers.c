@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:56:58 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void			handle_invalid(t_info *info, long double nbr, int inf_t)
 		else
 			buff(p, "inf", 3);
 	}
-	if (info->flags & WIDTH_OB_FLAG && info->flags & DASH_FLAG)
+	if (info->flags & WIDTH_FLAG && info->flags & MINUS_FLAG)
 		pad_width(p, len);
 }
 
@@ -168,7 +168,7 @@ void				handle_double(t_info *info)
 		handle_invalid(p, nbr, ld_isinf(nbr));
 	else
 	{
-		if (!(info->flags & PRECI_OB_FLAG) || info->precision < 0)
+		if (!(info->flags & PRECISION_FLAG) || info->precision < 0)
 			info->precision = 6;
 		tot_len = (info->precision != 0 || info->flags & HASH_FLAG) ? 1 : 0;
 		info->neg = (nbr < 0.0) ? 1 : 0;
@@ -178,7 +178,7 @@ void				handle_double(t_info *info)
 			info->width--;
 		handle_double_prepad(p, tot_len);
 		pf_ldtoa_base(p, nbr, int_len, tot_len);
-		if (info->flags & WIDTH_OB_FLAG && info->flags & DASH_FLAG)
+		if (info->flags & WIDTH_FLAG && info->flags & MINUS_FLAG)
 			pad_width(p, tot_len);
 	}
 }

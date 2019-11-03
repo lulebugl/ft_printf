@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:14 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/03 15:34:22 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:59:17 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,25 @@
 void	parse_format(t_info *info)
 {
 	t_jumptable		handler_funct;
-	const char		*f_start;
+	const char		*str;
 
-	f_start = info->f;
+	str = info->f;
 	if (info->f++ != '\0')
 	{
 		info->cpy_str = info->f;
 		parse_flags(info);
 		parse_width(info);
 		parse_precision(info, 0);
-		parse_length(info);
 		info->specifier = *info->f;
 		if ((handler_funct = get_handler_funct(info->specifier)) == NULL)
-			info->flags |= f_INVALID;
-		else if (!(info->flags & f_INVALID))
+			info->flags |= INVALID;
+		else if (!(info->flags & INVALID))
 		{
 			handler_funct(info);
 			info->f++;
 		}
 	}
-	info->cpy_str = (info->flags & f_INVALID) ? f_start : info->f;
+	info->cpy_str = (info->flags & INVALID) ? str : info->f;
 }
 
 int		ft_vfprintf(int fd, const char *format, va_list args)
@@ -78,7 +77,7 @@ int		ft_vfprintf(int fd, const char *format, va_list args)
 		}
 	}
 	buff(&info, info.cpy_str, info.f - info.cpy_str);
-	flush_buffer(&info);
+	print_buffer(&info);
 	va_end(info.args);
 	return (info.len);
 }

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:58:58 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static intmax_t	get_signed_int_arg(t_info *info)
 **	7) We run our itoa_base (printf version) and pass the absolute val
 **	   of our number cast as an max unsigned int (that way we can reuse our
 **	   itoa function for other stuff!) (see: printf_num_utils.c)
-**	8) We add ' ' padding if have the DASH_FLAG (left justified)
+**	8) We add ' ' padding if have the MINUS_FLAG (left justified)
 */
 
 void			handle_int(t_info *info)
@@ -78,13 +78,13 @@ void			handle_int(t_info *info)
 	while (tmp && ++nbr_len)
 		tmp /= info->base;
 	nbr_len += (pf & APOST_FLAG) ? ((nbr_len - 1) / 3) : 0;
-	nbr_len += (nbr == 0 && !(pf & PRECI_OB_FLAG && info->precision == 0)) ? 1 : 0;
+	nbr_len += (nbr == 0 && !(pf & PRECISION_FLAG && info->precision == 0)) ? 1 : 0;
 	if (nbr < 0 || pf & PLUS_FLAG || pf & SPACE_FLAG)
 		info->width--;
-	if (pf & PRECI_OB_FLAG)
+	if (pf & PRECISION_FLAG)
 		pf ^= ZERO_FLAG;
 	handle_int_prepad(p, nbr_len, 1);
 	pf_itoa_base(p, (uintmax_t)ABS(nbr), nbr_len);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, MAX(info->precision, nbr_len));
 }

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 12:15:51 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,18 @@ static void		handle_prepend(t_info *info, int signed_int)
 **			("%6.1d", 20) our width padding is 6 - 2 = 4
 **	2) 'zp_len' (number of zeros to pad) will be:
 **     precision - nbr_len if precision > 'nbr_len'
-**	   'zp_len' WILL NOT BE USED IN ANY WAY IF WE DON'T HAVE PRECI_OB_FLAG
+**	   'zp_len' WILL NOT BE USED IN ANY WAY IF WE DON'T HAVE PRECISION_FLAG
 **	3) If we have a width and we are right justified
 **	   a) If we have a ZERO_FLAG, calculate a tentative width pad that we will
-**		  use if we don't encounter a PRECI_OB_FLAG (after writing out signs)
-**	   b) If we have a PRECI_OB_FLAG then our width pad will be the total
+**		  use if we don't encounter a PRECISION_FLAG (after writing out signs)
+**	   b) If we have a PRECISION_FLAG then our width pad will be the total
 **		  effective nbr length calculated in 1). We don't use wp_len because it
 **		  may have been modified in step 3a)
 **	   c) If we don't have a precision and we don't have a ZERO_FLAG then just
 **		  pad normally
 **	4) Handle prepend of our number
-**	5) If we have a PRECI_OB_FLAG then write out our calculated zp_len
-**	6) If we DON'T have a PRECI_OB_FLAG but we have a width, are right
+**	5) If we have a PRECISION_FLAG then write out our calculated zp_len
+**	6) If we DON'T have a PRECISION_FLAG but we have a width, are right
 **	   justified, and have a ZERO_FLAG then we write out zeros according to the
 **	   wp_len.
 */
@@ -102,21 +102,21 @@ void			handle_int_prepad(t_info *info, int nbr_len, int signed_int)
 	int		zp_len;
 	int		wp_len;
 
-	wp_len = (info->flags & PRECI_OB_FLAG) ? MAX(info->precision, nbr_len) : nbr_len;
+	wp_len = (info->flags & PRECISION_FLAG) ? MAX(info->precision, nbr_len) : nbr_len;
 	zp_len = (info->precision > nbr_len) ? info->precision - nbr_len : 0;
-	if (info->flags & WIDTH_OB_FLAG && !(info->flags & DASH_FLAG))
+	if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 	{
 		if (info->flags & ZERO_FLAG)
 			wp_len = info->width - wp_len;
-		if (info->flags & PRECI_OB_FLAG)
+		if (info->flags & PRECISION_FLAG)
 			pad_width(p, zp_len + nbr_len);
 		else if (!(info->flags & ZERO_FLAG))
 			pad_width(p, wp_len);
 	}
 	handle_prepend(p, signed_int);
-	if (info->flags & PRECI_OB_FLAG)
+	if (info->flags & PRECISION_FLAG)
 		pad(p, zp_len, '0');
-	else if (info->flags & WIDTH_OB_FLAG && !(info->flags & DASH_FLAG))
+	else if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 		if (info->flags & ZERO_FLAG)
 			pad(p, wp_len, '0');
 }

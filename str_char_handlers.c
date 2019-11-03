@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:55:08 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 15:22:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void			handle_wchar(t_info *info)
 
 	pf = info->flags;
 	wc = (wchar_t)va_arg(info->args, wint_t);
-	if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 		pad_width(p, 1);
 	pf_putwchar(p, wc);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, 1);
 }
 
@@ -43,10 +43,10 @@ void			handle_wchar(t_info *info)
 **
 **	pf = info->flags;
 **	wc = (char)va_arg(info->args, wint_t);
-**	if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+**	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 **		pad_width(p, 1);
 **	buff(p, &wc, 1);
-**	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+**	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 **		pad_width(p, 1);
 **}
 */
@@ -71,10 +71,10 @@ void			handle_char(t_info *info)
 	else
 	{
 		c = (char)va_arg(info->args, int);
-		if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+		if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 			pad_width(p, 1);
 		buff(p, &c, 1);
-		if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+		if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 			pad_width(p, 1);
 	}
 }
@@ -140,11 +140,11 @@ void			handle_wstr(t_info *info)
 	if (info->precision < 0)
 		info->precision = wslen;
 	info->precision = (info->precision > wslen) ? wslen : info->precision;
-	wslen = (pf & PRECI_OB_FLAG) ? info->precision : wslen;
-	if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+	wslen = (pf & PRECISION_FLAG) ? info->precision : wslen;
+	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 		pad_width(p, wslen);
 	pf_putwstr(p, wstr, wslen);
-	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 		pad_width(p, wslen);
 }
 
@@ -165,12 +165,12 @@ void			handle_wstr(t_info *info)
 **	if (info->precision < 0)
 **		info->precision = slen;
 **	info->precision = (info->precision > slen) ? slen : info->precision;
-**	slen = (pf & PRECI_OB_FLAG) ? info->precision : slen;
-**	if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+**	slen = (pf & PRECISION_FLAG) ? info->precision : slen;
+**	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 **		pad_width(p, slen);
 **	str = (char *)wstr;
 **	pf_putwstr(p, wstr, slen);
-**	if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+**	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 **		pad_width(p, slen);
 **}
 */
@@ -204,11 +204,11 @@ void			handle_str(t_info *info)
 		if (info->precision < 0)
 			info->precision = slen;
 		info->precision = (info->precision > slen) ? slen : info->precision;
-		slen = (pf & PRECI_OB_FLAG) ? info->precision : slen;
-		if (pf & WIDTH_OB_FLAG && !(pf & DASH_FLAG))
+		slen = (pf & PRECISION_FLAG) ? info->precision : slen;
+		if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
 			pad_width(p, slen);
 		buff(p, str, slen);
-		if (pf & WIDTH_OB_FLAG && (pf & DASH_FLAG))
+		if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
 			pad_width(p, slen);
 	}
 }

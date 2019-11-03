@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   hard_double_handlers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/07/08 02:57:47 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/10/16 14:21:39 by lulebugl         ###   ########.fr       */
+/*   Created: 2018/01/05 14:33:34 by nmei              #+#    #+#             */
+/*   Updated: 2019/11/03 15:22:08 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <ft_printf.h>
 
-size_t	ft_strlen(const char *str)
+/*
+**	Sorry if you came here expecting something!!
+*/
+
+void			handle_double_sci(t_info *info)
 {
-	size_t i;
+	(void)p;
+}
 
-	i = 0;
-	while (str && str[i] != 0)
-		i++;
-	return (i);
+void			handle_double_shortest(t_info *info)
+{
+	(void)p;
+}
+
+void			handle_double_hex(t_info *info)
+{
+	(void)p;
 }

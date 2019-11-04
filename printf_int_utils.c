@@ -6,42 +6,35 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:20:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:13:56 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 16:25:34 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "libft/libft.h"
 #include "includes/ft_printf.h"
-#define UPPER(x) ((x)=='X')
+
 #define HEX(x) ((x)=='x'||(x)=='X'||(x)=='p')
 
-/*
-**	fg_itoa_base()
-**	unsigned long long max is: 18,446,744,073,709,551,615 (26 chars + 1 '\0')
-**	So a buffer of 27 chars is the biggest we ever have to consider.
-**
-**	Because '+'/'-'/' ' are handled in the handle_prepad() function we don't
-**	need to worry about them and just focus on the numbers.
-*/
-
-void			fg_itoa_base(t_info *info, uintmax_t nbr, int nbrlen)
+void			pf_itoa_base(t_info *info, uintmax_t nbr, int nbrlen)
 {
-	char	res[27];
-	int		tmp_len;
-	int		len_diff;
-	int		base;
-	char	char_case;
+	int 			base;
+	char			*conv;
+	char			res[27];
+	int				tmp_len;
 
 	base = info->base;
-	char_case = ('a' - 10 - (('a' - 'A') * UPPER(info->arg_type)));
 	tmp_len = nbrlen;
-	while (tmp_len--)
+	conv = (info->arg_type == 'X') ?
+		ft_strdup("0123456789ABCDEF") : ft_strdup("0123456789abcdef");
+	res[nbrlen] = '\0';
+	while (nbrlen-- > 0)
 	{
-		len_diff = nbrlen - tmp_len;
-		res[tmp_len] = (nbr % base) + ((nbr % base < 10) ? '0' : char_case);
+		res[nbrlen] = conv[nbr % base];
 		nbr /= base;
 	}
-	buff(info, res, nbrlen);
+	free(conv);
+	buff(info, res, tmp_len);
 }
 
 /*
@@ -63,12 +56,12 @@ static void		handle_prepend(t_info *info, int signed_int)
 	else if (info->flags & SPACE_FLAG && signed_int)
 		buff(info, " ", 1);
 	if (info->flags & HASH_FLAG && HEX(spec) && ((info->hex_int != 0) || spec == 'p'))
-		(UPPER(spec)) ? buff(info, "0X", 2) : buff(info, "0x", 2);
+		(info->arg_type == 'X') ? buff(info, "0X", 2) : buff(info, "0x", 2);
 }
 
 /*
 **	handle_prepad()
-**	This one is a doozy... Need to prevent interactions between wp_len
+**	This one is a doozy... Need to prevent interactions between prec
 **	and lenzero because in certain situations width also needs to do 0 padding.
 **	1) Effective nbr length will be the max of 'nbrlen' vs. 'info->precision'
 **	   i.e. ("%6.5d", 1)  our width padding is 6 - 5 = 1
@@ -81,7 +74,7 @@ static void		handle_prepend(t_info *info, int signed_int)
 **	   a) If we have a ZERO_FLAG, calculate a tentative width pad that we will
 **		  use if we don't encounter a PRECISION_FLAG (after writing out signs)
 **	   b) If we have a PRECISION_FLAG then our width pad will be the total
-**		  effective nbr length calculated in 1). We don't use wp_len because it
+**		  effective nbr length calculated in 1). We don't use prec because it
 **		  may have been modified in step 3a)
 **	   c) If we don't have a precision and we don't have a ZERO_FLAG then just
 **		  pad normally
@@ -89,29 +82,29 @@ static void		handle_prepend(t_info *info, int signed_int)
 **	5) If we have a PRECISION_FLAG then write out our calculated lenzero
 **	6) If we DON'T have a PRECISION_FLAG but we have a width, are right
 **	   justified, and have a ZERO_FLAG then we write out zeros according to the
-**	   wp_len.
+**	   prec.
 */
 
 void			handle_int_prepad(t_info *info, int nbrlen, int signed_int)
 {
 	int		lenzero;
-	int		wp_len;
+	int		prec;
 
-	wp_len = (info->flags & PRECISION_FLAG) ? MAX(info->precision, nbrlen) : nbrlen;
+	prec = (info->flags & PRECISION_FLAG) ? MAX(info->precision, nbrlen) : nbrlen;
 	lenzero = (info->precision > nbrlen) ? info->precision - nbrlen : 0;
 	if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 	{
 		if (info->flags & ZERO_FLAG)
-			wp_len = info->width - wp_len;
+			prec = info->width - prec;
 		if (info->flags & PRECISION_FLAG)
 			pad_width(info, lenzero + nbrlen);
 		else if (!(info->flags & ZERO_FLAG))
-			pad_width(info, wp_len);
+			pad_width(info, prec);
 	}
 	handle_prepend(info, signed_int);
 	if (info->flags & PRECISION_FLAG)
 		pad(info, lenzero, '0');
 	else if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 		if (info->flags & ZERO_FLAG)
-			pad(info, wp_len, '0');
+			pad(info, prec, '0');
 }

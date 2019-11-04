@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:53 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:31:00 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:21:06 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ static void		setup_conv_table(t_conv_table conv_table[128])
 	conv_table['p'] = &handle_uint_hex;
 	conv_table['d'] = &handle_int;
 	conv_table['i'] = &handle_int;
-	conv_table['u'] = &handle_unsigned_int_dec;
+	conv_table['u'] = &handle_uint;
 	conv_table['x'] = &handle_uint_hex;
 	conv_table['X'] = &handle_uint_hex;
-	conv_table['%'] = &handle_escape;
+	conv_table['%'] = &handle_percent;
 }
 
 /*

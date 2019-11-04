@@ -6,7 +6,7 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/11/04 14:27:57 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/11/04 15:31:00 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS = ft_printf.c				\
 		int_conv.c				\
 		uint_handlers.c			\
 		str_char_handlers.c		\
-		special_handlers.c		\
+		percent_handlers.c		\
 		printf_gen_utils.c		\
 		printf_int_utils.c		\
 

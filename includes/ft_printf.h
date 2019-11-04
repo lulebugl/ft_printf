@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:30 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:34:00 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:24:49 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void			reset_printf(t_info *info);
 /*
 **	printf_int_utils.c
 */
-void			fg_itoa_base(t_info *info, uintmax_t nbr, int nbrlen);
+void			pf_itoa_base(t_info *info, uintmax_t nbr, int nbrlen);
 void			handle_int_prepad(t_info *info, int nbrlen, int signed_int);
 
 /*
@@ -102,20 +102,11 @@ void			handle_int(t_info *info);
 **	uint_handlers.c
 **	handles 'o', 'u', 'xX', and 'p' arg_types
 */
-void			handle_unsigned_int_dec(t_info *info);
+void			handle_uint(t_info *info);
 void			handle_uint_hex(t_info *info);
 
-/*
-**	str_char_handlers.c
-**	handles 'c' and 's' arg_types
-*/
 void			handle_char(t_info *info);
 void			handle_str(t_info *info);
-
-/*
-**	special_handlers.c
-**	handles '%' and 'n' arg_types.
-*/
-void			handle_escape(t_info *info);
+void			handle_percent(t_info *info);
 
 #endif

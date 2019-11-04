@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 11:55:33 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:14:48 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 15:24:49 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			handle_int(t_info *info)
 	if (fg & PRECISION_FLAG)
 		fg ^= ZERO_FLAG;
 	handle_int_prepad(info, nbrlen, 1);
-	fg_itoa_base(info, (uintmax_t)ABS(nbr), nbrlen);
+	pf_itoa_base(info, (uintmax_t)ABS(nbr), nbrlen);
 	if (fg & WIDTH_FLAG && (fg & MINUS_FLAG))
 		pad_width(info, MAX(info->precision, nbrlen));
 }

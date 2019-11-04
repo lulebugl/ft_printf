@@ -6,13 +6,13 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:41 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:33:48 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 14:54:00 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-void			handle_escape(t_info *info)
+void	handle_percent(t_info *info)
 {
 	int		fg;
 

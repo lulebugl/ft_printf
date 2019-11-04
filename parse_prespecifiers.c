@@ -6,12 +6,12 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:27:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/03 17:19:13 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 13:18:12 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <ft_printf.h>
+#include "libft/libft.h"
+#include "includes/ft_printf.h"
 
 #define IS_FLAG(x) ((x)=='#'||(x)=='0'||(x)=='-'||(x)=='+'||(x)==' ')
 

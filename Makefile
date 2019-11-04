@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nmei <nmei@student.42.fr>                  +#+  +:+       +#+         #
+#    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/12/18 20:56:37 by nmei              #+#    #+#              #
-#    Updated: 2018/01/05 14:42:32 by nmei             ###   ########.fr        #
+#    Updated: 2019/11/04 13:12:00 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ RM = /bin/rm -f
 
 NAME = libftprintf.a
 SRCS_DIR = ./
-FILES = ft_printf parse_prespecifiers parse_specifier int_handlers\
-uint_handlers double_handlers str_char_handlers special_handlers\
-hard_double_handlers printf_gen_utils printf_double_utils printf_utf_utils\
+FILES = ft_printf parse_prespecifiers parse_specifier int_conv\
+uint_handlers str_char_handlers special_handlers\
+printf_gen_utils printf_utf_utils\
 printf_int_utils
 CFILES = $(patsubst %, $(SRCS_DIR)%.c, $(FILES))
 OFILES = $(patsubst %, %.o, $(FILES))

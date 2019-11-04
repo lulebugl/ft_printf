@@ -5,50 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/21 13:55:08 by nmei              #+#    #+#             */
-/*   Updated: 2019/11/03 16:23:31 by lulebugl         ###   ########.fr       */
+/*   Created: 2019/11/04 13:12:45 by lulebugl          #+#    #+#             */
+/*   Updated: 2019/11/04 13:27:08 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
-#include <ft_printf.h>
-#include <wchar.h>
+#include "libft/libft.h"
+#include "includes/ft_printf.h"
 
 /*
 **	Working version
-*/
-
-void			handle_wchar(t_info *info)
-{
-	int		pf;
-	wint_t	wc;
-
-	pf = info->flags;
-	wc = (wchar_t)va_arg(info->args, wint_t);
-	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-		pad_width(p, 1);
-	pf_putwchar(p, wc);
-	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-		pad_width(p, 1);
-}
-
-/*
-**	Intentionally crippled version!
-**
-**
-**void			handle_wchar(t_info *info)
-**{
-**	int		pf;
-**	wint_t	wc;
-**
-**	pf = info->flags;
-**	wc = (char)va_arg(info->args, wint_t);
-**	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-**		pad_width(p, 1);
-**	buff(p, &wc, 1);
-**	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-**		pad_width(p, 1);
-**}
 */
 
 /*
@@ -62,21 +28,16 @@ void			handle_wchar(t_info *info)
 
 void			handle_char(t_info *info)
 {
-	int		pf;
+	int		fg;
 	char	c;
 
-	pf = info->flags;
-	if (pf & L_FLAG || info->specifier == 'C')
-		handle_wchar(p);
-	else
-	{
-		c = (char)va_arg(info->args, int);
-		if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-			pad_width(p, 1);
-		buff(p, &c, 1);
-		if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-			pad_width(p, 1);
-	}
+	fg = info->flags;
+	c = (char)va_arg(info->args, int);
+	if (fg & WIDTH_FLAG && !(fg & MINUS_FLAG))
+		pad_width(info, 1);
+	buff(info, &c, 1);
+	if (fg & WIDTH_FLAG && (fg & MINUS_FLAG))
+		pad_width(info, 1);
 }
 
 /*
@@ -126,55 +87,6 @@ size_t			calc_precision(wchar_t *str, int precision, size_t new_prec)
 **	Working version!
 */
 
-void			handle_wstr(t_info *info)
-{
-	int		pf;
-	wchar_t	*wstr;
-	int		wslen;
-
-	pf = info->flags;
-	if ((wstr = va_arg(info->args, wchar_t *)) == NULL)
-		wstr = L"(null)";
-	wslen = (int)pf_wstrlen(wstr);
-	info->precision = (int)calc_precision(wstr, info->precision, 0);
-	if (info->precision < 0)
-		info->precision = wslen;
-	info->precision = (info->precision > wslen) ? wslen : info->precision;
-	wslen = (pf & PRECISION_FLAG) ? info->precision : wslen;
-	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-		pad_width(p, wslen);
-	pf_putwstr(p, wstr, wslen);
-	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-		pad_width(p, wslen);
-}
-
-/*
-**	Intentionally crippled version!
-**
-**void			handle_wstr(t_info *info)
-**{
-**	int		pf;
-**	wchar_t	*wstr;
-**	char	*str;
-**	int		slen;
-**
-**	pf = info->flags;
-**	if ((wstr = va_arg(info->args, wchar_t *)) == NULL)
-**		wstr = L"(null)";
-**	slen = (int)pf_wstrlen(wstr);
-**	if (info->precision < 0)
-**		info->precision = slen;
-**	info->precision = (info->precision > slen) ? slen : info->precision;
-**	slen = (pf & PRECISION_FLAG) ? info->precision : slen;
-**	if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-**		pad_width(p, slen);
-**	str = (char *)wstr;
-**	pf_putwstr(p, wstr, slen);
-**	if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-**		pad_width(p, slen);
-**}
-*/
-
 /*
 **	handle_str()
 **	Our generic str handler, if we're dealing with wide strs (unicode) then
@@ -189,26 +101,21 @@ void			handle_wstr(t_info *info)
 
 void			handle_str(t_info *info)
 {
-	int			pf;
+	int			fg;
 	char		*str;
 	int			slen;
 
-	pf = info->flags;
-	if (pf & L_FLAG || info->specifier == 'S')
-		handle_wstr(p);
-	else
-	{
-		if ((str = va_arg(info->args, char *)) == NULL)
-			str = "(null)";
-		slen = (int)ft_strlen(str);
-		if (info->precision < 0)
-			info->precision = slen;
-		info->precision = (info->precision > slen) ? slen : info->precision;
-		slen = (pf & PRECISION_FLAG) ? info->precision : slen;
-		if (pf & WIDTH_FLAG && !(pf & MINUS_FLAG))
-			pad_width(p, slen);
-		buff(p, str, slen);
-		if (pf & WIDTH_FLAG && (pf & MINUS_FLAG))
-			pad_width(p, slen);
-	}
+	fg = info->flags;
+	if ((str = va_arg(info->args, char *)) == NULL)
+		str = "(null)";
+	slen = (int)ft_strlen(str);
+	if (info->precision < 0)
+		info->precision = slen;
+	info->precision = (info->precision > slen) ? slen : info->precision;
+	slen = (fg & PRECISION_FLAG) ? info->precision : slen;
+	if (fg & WIDTH_FLAG && !(fg & MINUS_FLAG))
+		pad_width(info, slen);
+	buff(info, str, slen);
+	if (fg & WIDTH_FLAG && (fg & MINUS_FLAG))
+		pad_width(info, slen);
 }

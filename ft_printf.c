@@ -6,25 +6,25 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:14 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/03 16:59:17 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 13:14:56 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-#include <ft_printf.h>
+#include "includes/ft_printf.h"
 
 /*
 **	Parse the format string we just encountered!
-**	%[flags][width][.precision][length]specifier
+**	%[flags][width][.precision][length]arg_type
 **
 **	We'll separate into separate parsing steps
 **	[flags]: '-', '+', ' ', '#', '0'
 **	[width]: 'number', '*'
 **	[.precision]: '.number', '.*'
 **	[length]: '(none)', 'hh', 'h', 'l' (ell), 'll', 'j', 'z', 't', 'L'
-**	specifier: 'di', 'ouxX', 'fFeEgGaA', 'c', 's', 'p', 'n'
+**	arg_type: 'di', 'ouxX', 'fFeEgGaA', 'c', 's', 'p', 'n'
 **
 **	If in the process of parsing, we find to our horror that we have an invalid
 **	format string, then we will PURPOSELY treat the format string as a normal
@@ -33,7 +33,7 @@
 
 void	parse_format(t_info *info)
 {
-	t_jumptable		handler_funct;
+	t_conv_table		handler_funct;
 	const char		*str;
 
 	str = info->f;
@@ -43,8 +43,8 @@ void	parse_format(t_info *info)
 		parse_flags(info);
 		parse_width(info);
 		parse_precision(info, 0);
-		info->specifier = *info->f;
-		if ((handler_funct = get_handler_funct(info->specifier)) == NULL)
+		info->arg_type = *info->f;
+		if ((handler_funct = get_handler_funct(info->arg_type)) == NULL)
 			info->flags |= INVALID;
 		else if (!(info->flags & INVALID))
 		{
@@ -73,7 +73,7 @@ int		ft_vfprintf(int fd, const char *format, va_list args)
 			buff(&info, info.cpy_str, info.f - info.cpy_str);
 			/* compris 4/5, pour eviter trop d'appel write, créer un buffer pour print */
 			parse_format(&info);
-			reset_printf(&info);
+			reset_printf(&info); /* ok */
 		}
 	}
 	buff(&info, info.cpy_str, info.f - info.cpy_str);

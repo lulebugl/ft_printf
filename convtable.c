@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:53 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:43:04 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:57:18 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void		setup_conv_table(t_convtable conv_table[128])
 	conv_table['%'] = &handle_percent;
 }
 
-t_convtable		get_handler_funct(char c)
+t_convtable		get_funct(char c)
 {
 	static t_convtable	arg_type_ct[128] = {NULL};
 

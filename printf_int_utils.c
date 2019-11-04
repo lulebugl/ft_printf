@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:20:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:34:13 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 18:19:56 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 
 #define HEX(x) ((x)=='x'||(x)=='X'||(x)=='p')
 
-void			pf_itoa_base(t_info *info, uintmax_t nbr, int nbrlen)
+void			pf_itoa_base(t_info *info, uintmax_t nbr, int len)
 {
-	int 			base;
-	char			*conv;
-	char			res[27];
-	int				tmp_len;
+	int		base;
+	char	*conv;
+	char	res[27];
+	int		tmp_len;
 
 	base = info->base;
-	tmp_len = nbrlen;
+	tmp_len = len;
 	conv = (info->arg_type == 'X') ?
 		ft_strdup("0123456789ABCDEF") : ft_strdup("0123456789abcdef");
-	res[nbrlen] = '\0';
-	while (nbrlen-- > 0)
+	res[len] = '\0';
+	while (len-- > 0)
 	{
-		res[nbrlen] = conv[nbr % base];
+		res[len] = conv[nbr % base];
 		nbr /= base;
 	}
 	free(conv);
@@ -48,23 +48,24 @@ static void		handle_prepend(t_info *info, int signed_int)
 		buff(info, "+", 1);
 	else if (info->flags & SPACE_FLAG && signed_int)
 		buff(info, " ", 1);
-	if (info->flags & HASH_FLAG && HEX(spec) && ((info->hex_int != 0) || spec == 'p'))
+	if (info->flags & HASH_FLAG && HEX(spec) &&
+		((info->hex_int != 0) || spec == 'p'))
 		(info->arg_type == 'X') ? buff(info, "0X", 2) : buff(info, "0x", 2);
 }
 
-void			handle_int_prepad(t_info *info, int nbrlen, int signed_int)
+void			handle_int_prepad(t_info *info, int len, int signed_int)
 {
 	int		lenzero;
 	int		prec;
 
-	prec = (info->flags & PRECISION_FLAG) ? MAX(info->precision, nbrlen) : nbrlen;
-	lenzero = (info->precision > nbrlen) ? info->precision - nbrlen : 0;
+	prec = (info->flags & PRECISION_FLAG) ? MAX(info->precision, len) : len;
+	lenzero = (info->precision > len) ? info->precision - len : 0;
 	if (info->flags & WIDTH_FLAG && !(info->flags & MINUS_FLAG))
 	{
 		if (info->flags & ZERO_FLAG)
 			prec = info->width - prec;
 		if (info->flags & PRECISION_FLAG)
-			pad_width(info, lenzero + nbrlen);
+			pad_width(info, lenzero + len);
 		else if (!(info->flags & ZERO_FLAG))
 			pad_width(info, prec);
 	}

@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:56:29 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:46:01 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:23:26 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,10 @@ void	pad_width(t_info *info, int arg_width)
 	int pad_width;
 
 	pad_width = info->width - arg_width;
-	pad(info, pad_width, ' ');
+	if ((info->flags & PRECISION_FLAG) && (info->flags & ZERO_FLAG) && (info->precision < 0))
+		pad(info, pad_width, '0');
+	else
+		pad(info, pad_width, ' ');
 }
 
 void	reset_printf(t_info *info)

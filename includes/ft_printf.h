@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:30 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:21:02 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 14:34:00 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,6 @@
 # define WIDTH_FLAG		32
 # define PRECISION_FLAG	64
 # define INVALID		128
-
-/*
-**	Structure containing all useful variables for our printf functions!
-**
-**	flags uses a binary addressing system to indicate various things about
-**	our printf format string (including handling status!!)
-**
-**	[flags]
-**	'#'						: 1  (force prefix)
-**	'0'						: 2  (left pad)
-**	'-'						: 4  (left justify)
-**	'+'						: 8  (show sign)
-**	' '						: 16 (insert space)
-**	'''						: 32 (format integers with locale's 1000's char)
-**
-**	'width obtained'		: 32768
-**	'precision obtained'	: 65536
-**	'length obtained'		: 131072
-**
-**	'formatter invalid'		: 262144
-*/
 
 # define MAX(x, y) (((x) > (y)) ? (x) : (y))
 # define ABS(x) (((x) < 0) ? -(x) : (x))
@@ -71,11 +50,6 @@ typedef struct	s_info
 	char		arg_type;
 }				t_info;
 
-/*
-**	ft_printf.c
-**	Main printf functions!
-**	Why have a vfprintf? See: https://stackoverflow.com/questions/1485805/
-*/
 int				ft_vfprintf(int fd, const char *format, va_list args);
 int				ft_printf(const char *format, ...);
 
@@ -87,12 +61,6 @@ void			buff(t_info *info, const void *s, size_t nbyte);
 void			pad(t_info *info, int pad_len, char c);
 void			pad_width(t_info *info, int arg_width);
 void			reset_printf(t_info *info);
-
-/*
-**	printf_utf_utils.c
-*/
-
-void			fg_putchar(t_info *info, char c);
 
 /*
 **	printf_int_utils.c
@@ -135,7 +103,7 @@ void			handle_int(t_info *info);
 **	handles 'o', 'u', 'xX', and 'p' arg_types
 */
 void			handle_unsigned_int_dec(t_info *info);
-void			handle_unsigned_int_hex(t_info *info);
+void			handle_uint_hex(t_info *info);
 
 /*
 **	str_char_handlers.c

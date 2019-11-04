@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:56:29 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:24:23 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 14:46:01 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ void	buff(t_info *info, const void *s, size_t n)
 		info->len++;
 	}
 }
-
-/*
-**	pad()
-**	General function that generates a character string of pad_len consisting
-**	of the 'c's which then gets sent to the buffer.
-*/
 
 void	pad(t_info *info, int pad_len, char c)
 {

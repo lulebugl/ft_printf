@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:59 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:31:01 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 14:31:00 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				handle_unsigned_int_oct(t_info *info)
 		pad_width(info, MAX(info->precision, nbrlen));
 }
 
-void				handle_unsigned_int_hex(t_info *info)
+void				handle_uint_hex(t_info *info)
 {
 	uintmax_t	nbr;
 	uintmax_t	tmp;

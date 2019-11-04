@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:14 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 13:14:56 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:41:19 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 
 void	parse_format(t_info *info)
 {
-	t_conv_table		handler_funct;
+	t_convtable		handler_funct;
 	const char		*str;
 
 	str = info->f;

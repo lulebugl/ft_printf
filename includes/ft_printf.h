@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:30 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:11:54 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 17:41:19 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void			parse_length(t_info *info);
 **	handlers for all the different possible arg_types.
 **	arg_types: '%', 'di', 'ouxX', 'c', 's', 'p'
 */
-typedef void	(*t_conv_table)(t_info *info);
-t_conv_table		get_handler_funct(char c);
+typedef void	(*t_convtable)(t_info *info);
+t_convtable		get_handler_funct(char c);
 
 /*
 **	int_handlers.c

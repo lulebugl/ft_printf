@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:30 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:57:18 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:25:21 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_info
 	char		arg_type;
 }				t_info;
 
-int				ft_vfprintf(int fd, const char *format, va_list args);
+int				ft_printf_fd(int fd, const char *format, va_list args);
 int				ft_printf(const char *format, ...);
 void			print_buffer(t_info *info);
 void			buff(t_info *info, const void *s, size_t nbyte);

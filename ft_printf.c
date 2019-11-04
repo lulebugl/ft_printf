@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:14 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:59:43 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/04 19:25:21 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parse_format(t_info *info)
 	info->cpy_str = (info->flags & INVALID) ? str : info->f;
 }
 
-int		ft_vfprintf(int fd, const char *format, va_list args)
+int		ft_printf_fd(int fd, const char *format, va_list args)
 {
 	t_info	info;
 
@@ -74,7 +74,7 @@ int		ft_printf(const char *format, ...)
 	if (format)
 	{
 		va_start(args, format);
-		len = ft_vfprintf(1, format, args);
+		len = ft_printf_fd(1, format, args);
 		va_end(args);
 	}
 	return (len);

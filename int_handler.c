@@ -6,14 +6,14 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 11:55:33 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 18:01:29 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
-void			handle_int(t_info *info)
+void			handle_int(t_pfinfo *info)
 {
 	intmax_t	nbr;
 	intmax_t	tmp;

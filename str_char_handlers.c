@@ -6,14 +6,14 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:12:45 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:55:40 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "includes/ft_printf.h"
+#include "../libft/libft.h"
+#include "ft_printf.h"
 
-void	handle_char(t_info *info)
+void	handle_char(t_pfinfo *info)
 {
 	int		fg;
 	char	c;
@@ -27,7 +27,7 @@ void	handle_char(t_info *info)
 		pad_width(info, 1);
 }
 
-void	handle_str(t_info *info)
+void	handle_str(t_pfinfo *info)
 {
 	int			fg;
 	char		*str;

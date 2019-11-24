@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   special_handlers.c                                 :+:      :+:    :+:   */
+/*   percent_handlers.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:41 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 14:54:00 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
-void	handle_percent(t_info *info)
+void	handle_percent(t_pfinfo *info)
 {
 	int		fg;
 

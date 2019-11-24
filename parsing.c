@@ -6,16 +6,16 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 16:27:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 18:17:16 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "includes/ft_printf.h"
+#include "../libft/libft.h"
+#include "ft_printf.h"
 
 #define IS_FLAG(x) ((x)=='#'||(x)=='0'||(x)=='-'||(x)=='+'||(x)==' ')
 
-void			parse_flags(t_info *info)
+void			parse_flags(t_pfinfo *info)
 {
 	if (IS_FLAG(*info->f))
 	{
@@ -34,7 +34,7 @@ void			parse_flags(t_info *info)
 	}
 }
 
-void			parse_width(t_info *info)
+void			parse_width(t_pfinfo *info)
 {
 	int	width;
 
@@ -60,7 +60,7 @@ void			parse_width(t_info *info)
 	}
 }
 
-void			parse_precision(t_info *t, int nb_rec)
+void			parse_precision(t_pfinfo *t, int nb_rec)
 {
 	if (!(t->flags & INVALID) && (*t->f == '.' || nb_rec > 0))
 	{

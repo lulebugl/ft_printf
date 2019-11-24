@@ -6,13 +6,13 @@
 #    By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/15 17:50:44 by lulebugl          #+#    #+#              #
-#    Updated: 2019/11/04 17:46:40 by lulebugl         ###   ########.fr        #
+#    Updated: 2019/11/24 20:01:57 by lulebugl         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -I includes
 
 SRCS = ft_printf.c				\
 		parsing.c				\
@@ -26,8 +26,6 @@ SRCS = ft_printf.c				\
 
 OBJ = $(SRCS:.c=.o)
 
-HEADERS = ft_printf.h libft/libft.h
-
 all: $(NAME)
 	@echo "\033[0;32mlibftprintf.a compiled successfully\033[0m"
 
@@ -35,18 +33,16 @@ all: $(NAME)
 	@gcc $(FLAGS) -o $@ -c $<
 
 libft/libft.a:
-	@make -C ./libft
+	@make -C ../libft
 
 $(NAME): libft/libft.a $(OBJ)
-	@ar rcs $(NAME) $(OBJ) libft/*.o
+	@ar rcs $(NAME) $(OBJ) ../libft/*.o
 
 clean:
 	@/bin/rm -f $(OBJ)
-	@make -C ./libft clean
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@make -C ./libft fclean
 
 re: fclean all
 

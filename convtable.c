@@ -6,12 +6,12 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:53 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 17:57:18 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:38:31 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "includes/ft_printf.h"
+#include "../libft/libft.h"
+#include "ft_printf.h"
 
 static void		setup_conv_table(t_convtable conv_table[128])
 {

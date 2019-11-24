@@ -6,22 +6,22 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 14:56:29 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 18:20:14 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
-#include "libft/libft.h"
-#include "includes/ft_printf.h"
+#include "../libft/libft.h"
+#include "ft_printf.h"
 
-void	print_buffer(t_info *info)
+void	print_buffer(t_pfinfo *info)
 {
 	write(info->fd, info->buf, info->buf_len);
 	info->buf_len = 0;
 }
 
-void	buff(t_info *info, const void *s, size_t n)
+void	buff(t_pfinfo *info, const void *s, size_t n)
 {
 	unsigned char	*str;
 	size_t			remain;
@@ -44,7 +44,7 @@ void	buff(t_info *info, const void *s, size_t n)
 	}
 }
 
-void	pad(t_info *info, int pad_len, char c)
+void	pad(t_pfinfo *info, int pad_len, char c)
 {
 	char	*pad_str;
 
@@ -61,7 +61,7 @@ void	pad(t_info *info, int pad_len, char c)
 	}
 }
 
-void	pad_width(t_info *info, int arg_width)
+void	pad_width(t_pfinfo *info, int arg_width)
 {
 	int pad_width;
 
@@ -73,7 +73,7 @@ void	pad_width(t_info *info, int arg_width)
 		pad(info, pad_width, ' ');
 }
 
-void	reset_printf(t_info *info)
+void	reset_printf(t_pfinfo *info)
 {
 	info->flags = 0;
 	info->width = 0;

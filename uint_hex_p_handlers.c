@@ -6,15 +6,15 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 13:30:59 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 18:04:30 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 #define UPPER(x) ((x)=='X')
 
-static	uintmax_t	get_arg(t_info *info)
+static	uintmax_t	get_arg(t_pfinfo *info)
 {
 	if (info->arg_type == 'p')
 		return ((uintmax_t)(uintptr_t)va_arg(info->args, void *));
@@ -22,7 +22,7 @@ static	uintmax_t	get_arg(t_info *info)
 		return ((uintmax_t)va_arg(info->args, unsigned int));
 }
 
-void				handle_uint(t_info *info)
+void				handle_uint(t_pfinfo *info)
 {
 	uintmax_t	nbr;
 	uintmax_t	tmp;
@@ -45,7 +45,7 @@ void				handle_uint(t_info *info)
 		pad_width(info, MAX(info->precision, len));
 }
 
-void				handle_uint_hex(t_info *info)
+void				handle_uint_hex(t_pfinfo *info)
 {
 	uintmax_t	nbr;
 	uintmax_t	tmp;

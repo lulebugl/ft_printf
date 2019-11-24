@@ -6,7 +6,7 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/03 13:49:30 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 19:25:21 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 
 # define BUFF_SIZE	4096
 
-typedef struct	s_info
+typedef struct	s_pfinfo
 {
 	const char	*f;
 	const char	*cpy_str;
@@ -48,29 +48,29 @@ typedef struct	s_info
 	int			neg;
 	uintmax_t	hex_int;
 	char		arg_type;
-}				t_info;
+}				t_pfinfo;
 
 int				ft_printf_fd(int fd, const char *format, va_list args);
 int				ft_printf(const char *format, ...);
-void			print_buffer(t_info *info);
-void			buff(t_info *info, const void *s, size_t nbyte);
-void			pad(t_info *info, int pad_len, char c);
-void			pad_width(t_info *info, int arg_width);
-void			reset_printf(t_info *info);
-void			parse_flags(t_info *info);
-void			parse_width(t_info *info);
-void			parse_precision(t_info *info, int nb_rec);
-void			parse_length(t_info *info);
-void			handle_char(t_info *info);
-void			handle_str(t_info *info);
-void			handle_percent(t_info *info);
-void			pf_itoa_base(t_info *info, uintmax_t nbr, int nbrlen);
-void			handle_int(t_info *info);
-void			handle_int_prepad(t_info *info, int nbrlen, int signed_int);
-void			handle_uint(t_info *info);
-void			handle_uint_hex(t_info *info);
+void			print_buffer(t_pfinfo *info);
+void			buff(t_pfinfo *info, const void *s, size_t nbyte);
+void			pad(t_pfinfo *info, int pad_len, char c);
+void			pad_width(t_pfinfo *info, int arg_width);
+void			reset_printf(t_pfinfo *info);
+void			parse_flags(t_pfinfo *info);
+void			parse_width(t_pfinfo *info);
+void			parse_precision(t_pfinfo *info, int nb_rec);
+void			parse_length(t_pfinfo *info);
+void			handle_char(t_pfinfo *info);
+void			handle_str(t_pfinfo *info);
+void			handle_percent(t_pfinfo *info);
+void			pf_itoa_base(t_pfinfo *info, uintmax_t nbr, int nbrlen);
+void			handle_int(t_pfinfo *info);
+void			handle_int_prepad(t_pfinfo *info, int nbrlen, int signed_int);
+void			handle_uint(t_pfinfo *info);
+void			handle_uint_hex(t_pfinfo *info);
 
-typedef void	(*t_convtable)(t_info *info);
+typedef void	(*t_convtable)(t_pfinfo *info);
 t_convtable		get_funct(char c);
 
 #endif

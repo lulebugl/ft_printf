@@ -6,17 +6,17 @@
 /*   By: lulebugl <lulebugl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/04 12:20:37 by lulebugl          #+#    #+#             */
-/*   Updated: 2019/11/04 18:19:56 by lulebugl         ###   ########.fr       */
+/*   Updated: 2019/11/17 20:42:04 by lulebugl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libft/libft.h"
-#include "includes/ft_printf.h"
+#include "../libft/libft.h"
+#include "ft_printf.h"
 
 #define HEX(x) ((x)=='x'||(x)=='X'||(x)=='p')
 
-void			pf_itoa_base(t_info *info, uintmax_t nbr, int len)
+void			pf_itoa_base(t_pfinfo *info, uintmax_t nbr, int len)
 {
 	int		base;
 	char	*conv;
@@ -37,7 +37,7 @@ void			pf_itoa_base(t_info *info, uintmax_t nbr, int len)
 	buff(info, res, tmp_len);
 }
 
-static void		handle_prepend(t_info *info, int signed_int)
+static void		handle_prepend(t_pfinfo *info, int signed_int)
 {
 	int	spec;
 
@@ -53,7 +53,7 @@ static void		handle_prepend(t_info *info, int signed_int)
 		(info->arg_type == 'X') ? buff(info, "0X", 2) : buff(info, "0x", 2);
 }
 
-void			handle_int_prepad(t_info *info, int len, int signed_int)
+void			handle_int_prepad(t_pfinfo *info, int len, int signed_int)
 {
 	int		lenzero;
 	int		prec;
